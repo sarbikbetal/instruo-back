@@ -34,6 +34,21 @@ router.post('/register', (req, res) => {
 //   }
 // });
 
+router.get('/search', (req, res) => {
+  let name = req.query.name;
+  console.log(name);
+
+  if (name)
+    postgres.searchuser([name], (err, result) => {
+      if (err)
+        res.json({ err: "Query error", stack: err.stack });
+      else
+        res.json({ data: result });
+    })
+  else res.sendStatus(400);
+});
+
+
 router.get('/all', (req, res) => {
   postgres.query('SELECT * FROM users', [], (err, result) => {
     if (err)
