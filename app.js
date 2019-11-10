@@ -4,10 +4,10 @@ const app = express();
 
 // Express.js Routes
 const user = require("./routes/user");
-// const info = require("./routes/info");
+const group = require("./routes/group");
 
 app.use('/user', user);
-
+app.use('/group', group);
 //Server Init
 const port = process.env.PORT || 4125;
 const server = app.listen(port, () => {
